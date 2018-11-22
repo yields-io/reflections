@@ -56,6 +56,10 @@ public class FilterBuilder implements Predicate<String> {
 
     @Override public String toString() {return Joiner.on(", ").join(chain);}
 
+    public boolean test(String input) {
+        return this.apply(input);
+    }
+
     public boolean apply(String regex) {
         boolean accept = chain == null || chain.isEmpty() || chain.get(0) instanceof Exclude;
 
@@ -74,6 +78,7 @@ public class FilterBuilder implements Predicate<String> {
         final Pattern pattern;
         public Matcher(final String regex) {pattern = Pattern.compile(regex);}
         public abstract boolean apply(String regex);
+        public boolean test(String regex) { return apply(regex); }
         @Override public String toString() {return pattern.pattern();}
     }
 

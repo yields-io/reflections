@@ -457,7 +457,7 @@ public class Reflections {
     protected Iterable<String> getAllAnnotated(Iterable<String> annotated, boolean inherited, boolean honorInherited) {
         if (honorInherited) {
             if (inherited) {
-                Iterable<String> subTypes = store.get(index(SubTypesScanner.class), filter(annotated, new Predicate<String>() {
+                Iterable<String> subTypes = store.get(index(SubTypesScanner.class), filter(annotated, new RPredicate<String>() {
                     public boolean apply(@Nullable String input) {
                         final Class<?> type = forName(input, loaders());
                         return type != null && !type.isInterface();
@@ -576,7 +576,7 @@ public class Reflections {
      * <pre>Set<String> xmls = reflections.getResources(".*\\.xml");</pre>
      */
     public Set<String> getResources(final Pattern pattern) {
-        return getResources(new Predicate<String>() {
+        return getResources(new RPredicate<String>() {
             public boolean apply(String input) {
                 return pattern.matcher(input).matches();
             }

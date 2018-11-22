@@ -4,6 +4,7 @@ import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 import org.reflections.Reflections;
+import org.reflections.RPredicate;
 import org.reflections.ReflectionsException;
 import org.reflections.util.ClasspathHelper;
 import org.reflections.util.Utils;
@@ -119,7 +120,7 @@ public abstract class Vfs {
 
     /** return an iterable of all {@link org.reflections.vfs.Vfs.File} in given urls, starting with given packagePrefix and matching nameFilter */
     public static Iterable<File> findFiles(final Collection<URL> inUrls, final String packagePrefix, final Predicate<String> nameFilter) {
-        Predicate<File> fileNamePredicate = new Predicate<File>() {
+        Predicate<File> fileNamePredicate = new RPredicate<File>() {
             public boolean apply(File file) {
                 String path = file.getRelativePath();
                 if (path.startsWith(packagePrefix)) {

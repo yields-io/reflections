@@ -9,6 +9,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.reflections.Reflections;
+import org.reflections.RPredicate;
 import org.reflections.ReflectionsException;
 import org.reflections.vfs.Vfs.Dir;
 import org.reflections.vfs.Vfs.UrlType;
@@ -85,7 +86,7 @@ public class UrlTypeVFS implements UrlType {
         }
     }
 
-    Predicate<File> realFile = new Predicate<File>() {
+    Predicate<File> realFile = new RPredicate<File>() {
         public boolean apply(File file) {
             return file.exists() && file.isFile();
         }
