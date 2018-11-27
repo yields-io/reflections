@@ -17,7 +17,7 @@
 
     <groupId>org.reflections</groupId>
     <artifactId>reflections</artifactId>
-    <version>0.9.11-y1</version>
+    <version>0.9.11-y2</version>
     <packaging>jar</packaging>
 
     <name>Reflections</name>
